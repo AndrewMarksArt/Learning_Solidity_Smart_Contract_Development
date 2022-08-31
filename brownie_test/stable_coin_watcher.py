@@ -1,14 +1,3 @@
-"""
-[DATA STRUCTURES]
-Prepare a data structure for each token
-Prepare a data structure for each unique token pair
-
-[MAIN PROGRAM]
-Set up loop
-Fetch and store swap rates
-Print interesting results 
-"""
-
 # import needed packages
 import time
 import datetime
@@ -92,9 +81,13 @@ while True:
                 ],
             )[-1] / (10 ** token_out["decimals"])
         )
-        # print out the datetime, token being swaped and how much of the other token we will get out
-        print(
-            f"{datetime.datetime.now().strftime('[%I:%M:%S %p]')} {token_in['symbol']} → {token_out['symbol']}: ({qty_out:.3f})"
-        )
+        # check to see if the there is a 1% or greater difference between the pairs
+        # these are actionable trades that have a minimum profit of at least 1%
+        # only print out profitable trades
+        if qty_out >= 1.01:
+            print(
+                f"{datetime.datetime.now().strftime('[%I:%M:%S %p]')}"\
+                    " {token_in['symbol']} → {token_out['symbol']}: ({qty_out:.3f})"
+            )
         # wait for 0.1 seconds
         time.sleep(0.1)
