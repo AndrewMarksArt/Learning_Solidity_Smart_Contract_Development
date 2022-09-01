@@ -90,8 +90,7 @@ def main():
             # only print out profitable trades
             if qty_out >= 1.01:
                 print(
-                    f"{datetime.datetime.now().strftime('[%I:%M:%S %p]')}"\
-                        " {token_in['symbol']} → {token_out['symbol']}: ({qty_out:.3f})"
+                    f"{datetime.datetime.now().strftime('[%I:%M:%S %p]')} {token_in['symbol']} → {token_out['symbol']}: ({qty_out:.3f})"
                 )
             # wait for 0.1 seconds
             time.sleep(0.1)
