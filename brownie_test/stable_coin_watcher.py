@@ -4,7 +4,8 @@ import datetime
 from brownie import *
 
 # load user test_account
-user = accounts.load('test_account')
+# if need to create account run
+user = accounts.load('test_account2')
 
 # connect to avax network
 network.connect('avax-main')
@@ -61,7 +62,8 @@ token_pairs = [
     (mim, usdc),
 ]
 
-# we want to run continuously so we use a while True loop 
+# we want to run continuously so we use a while True loop
+print("looking for arbs...")
 while True:
     # for each token pair in the token pair list
     for pair in token_pairs:
