@@ -40,7 +40,7 @@ def main():
     # Approval Amount is represented by a 256-bit unsigined integer
     # which can take any value from 0 up to (2 ** 256-1)
     # use (2 ** 256-1) for "unlimited approval", use 0 to "revoke"
-    
+
     # NOTE the unsigned integer value is the ETH token quantity,
     # so it should always be multipled by (10 ** decimal())
     # for USDT (6 decimal places) --> (10 ** 6)
@@ -49,6 +49,12 @@ def main():
         [APPROVAL AMOUNT],
         {'from': user}
     )
+
+    # SLippage = allowed price difference between the submitted swap
+    # and the executed swap, common to see 0.5%-1% for normal pairs
+    # and up to 5% for low volume pairs --> but this is BAD
+    # NOTE ther is no slippage parameter, is made up to improve the
+    # UX when swapping on a DEX
 
 
 if __name__ == "__main__":

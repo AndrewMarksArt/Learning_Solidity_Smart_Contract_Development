@@ -4,6 +4,9 @@ from terminal use "brownie accounts generate " {account name} to create an accou
 it will ask for a password and then generate a 12 word mnemomic phrase and you can create an
 account with a known private key.
 
+// create new wallet/account
+"brownie accounts create <id>" 
+
 ### Using the console
 "brownie networks modify avax-main" to show network id, chainid, explorer, and host
 
