@@ -30,6 +30,27 @@ def main():
     print(f"User MIM allowance: {mim.allowance(user.address, router.address)}")
     print(f"User DAI allowance: {dai.allowance(user.address, router.address)}")
 
+    # get wavx contract needed for swaps
+    wavax = Contract.from_explorer('0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7')
+
+    # swap AVAX for exact tokens
+    router.swapAVAXForExactTokens(
+        5*(10**mim.decimals()),
+        [wavax.address, mim.address],
+        # address the new tokens swaped for will go
+        user.address,
+        # deadline, UNIX time in sec but blockchain wants milliseconds
+        # get time convert to milliseconds and add 30 seconds for txs
+        1000*int(time.time()+30),
+        # from what address, and max value of avax to be used
+        {'from': user.address, 'value': 0.27*10**18}
+    )
+
+    # print MIM balance after the swap
+    print(f"{mim.balanceOf(user.address)}")
+    # more readable balance print out
+    print(f"{mim.balanceOf(user.address/(10**mim.decimals()))}")
+
 
 if __name__ == "__main__":
     main()
