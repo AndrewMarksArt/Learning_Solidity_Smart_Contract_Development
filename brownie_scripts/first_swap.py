@@ -43,7 +43,7 @@ def main():
         # get time convert to milliseconds and add 30 seconds for txs
         1000*int(time.time()+30),
         # from what address, and max value of avax to be used
-        {'from': user.address, 'value': 0.2*10**18}
+        {'from': user.address, 'value': 0.28*(10**18)}
     )
 
     # print MIM balance after the swap
@@ -54,16 +54,16 @@ def main():
     # set approval for MIM
     mim.approve(router.address, 2.5*10**mim.decimals(), {'from': user.address})
     # print MIM allowance for MIM
-    print(f"{mim.allowance(user.address)}")
+    print(f"{mim.allowance(user.address, router.address)}")
     # more readable balance print out
-    print(f"{mim.allowance(user.address/(10**mim.decimals()))}")
+    print(f"{mim.allowance(user.address, router.address/(10**mim.decimals()))}")
 
     # swap MIM for DAI
     router.swapExactTokensForTokens(
         # how much MIM to swap
-        2.5*10**mim.decimals(),
+        2.5*(10**mim.decimals()),
         # minimum DAI --> exchange rate set to 0.95
-        0.95*2.5*10**dai.decimals(),
+        0.95*2.5*(10**dai.decimals()),
         [mim.address, dai.address],
         # address output will go to
         user.address,
@@ -81,7 +81,7 @@ def main():
 
     # print DAI balance after the swap
     print(f"DAI balance: {dai.balanceOf(user.address)}")
-    print(f"DAI balance: {dai.balanceOf(user.address/(10**dai.decimals()))}")
+    print(f"DAI balance: {dai.balanceOf(user.address)/((10**dai.decimals()))}")
 
     # print AVAX balance after the swap
     print(f"AVAX balance: {user.balance()}")
