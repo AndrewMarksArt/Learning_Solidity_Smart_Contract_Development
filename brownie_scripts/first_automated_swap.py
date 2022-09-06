@@ -91,7 +91,7 @@ def main():
             print(f"{datetime.datetime.now().strftime('[%I:%M:%S %p]')} MIM --> DAI: ({ratio:.3f})")
             last_ratio = ratio
 
-        if ratio >= 1.003:
+        if ratio >= 0.997:
             print("*** Executing Swap ***")
             try:
                 router_contract.swapExactTokensForTokens(
