@@ -4,12 +4,12 @@ from brownie import *
 
 
 def main():
+    # connect to network
+    network.connect('avax-main')
+
     # set the users account
     # enter password when prompted
     user = accounts.load("Ragnar")
-
-    # connect to network
-    network.connect('avax-main')
 
     # check user balance and print it out
     # make sure to divide by 10^decimals(18)

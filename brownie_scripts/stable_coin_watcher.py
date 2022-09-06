@@ -5,12 +5,12 @@ from brownie import *
 
 
 def main():
+    # connect to avax network
+    network.connect('avax-main')
+    
     # load user test_account
     # if need to create account run
     user = accounts.load('test_account2')
-
-    # connect to avax network
-    network.connect('avax-main')
 
     # load router and stable coin contracts
     print("Loading Contracts:")
