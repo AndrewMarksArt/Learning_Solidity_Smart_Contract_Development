@@ -1,3 +1,6 @@
 # ENVIRONMENTS
 .venv
 .env
+
+utils.py
+__pycache__
