@@ -3,7 +3,7 @@ import time
 import datetime
 import requests
 import os
-import brownie
+from brownie import *
 
 import utils
 
