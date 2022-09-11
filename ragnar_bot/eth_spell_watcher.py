@@ -2,12 +2,14 @@ import sys
 import time
 import os
 from brownie import *
+import utils
+import helpers
 
 # Change these to match the Project ID from https://infura.io
-WEB3_INFURA_PROJECT_ID = "018a028e27844d9cb77f2f6b08beff91"
+WEB3_INFURA_PROJECT_ID = utils.WEB3_INFURA_PROJECT_ID
 
-SPELL_CONTRACT_ADDRESS = "0x090185f2135308bad17527004364ebcc2d37e5f6"
-SSPELL_CONTRACT_ADDRESS = "0x26FA3fFFB6EfE8c1E69103aCb4044C26B9A106a9"
+SPELL_CONTRACT_ADDRESS = utils.ETH_SPELL_CONTRACT_ADDRESS
+SSPELL_CONTRACT_ADDRESS = utils.ETH_SSPELL_CONTRACT_ADDRESS
 
 os.environ["WEB3_INFURA_PROJECT_ID"] = WEB3_INFURA_PROJECT_ID
 
@@ -15,7 +17,7 @@ FILENAME = ".abra_rate"
 
 
 def main():
-
+    
     try:
         network.connect("mainnet")
     except:
@@ -24,10 +26,10 @@ def main():
         )
 
     print("\nContracts loaded:")
-    spell_contract = contract_load(SPELL_CONTRACT_ADDRESS, "Token: SPELL")
-    sspell_contract = contract_load(SSPELL_CONTRACT_ADDRESS, "Token: sSPELL")
+    spell_contract = helpers.contract_load(SPELL_CONTRACT_ADDRESS, "Token: SPELL")
+    sspell_contract = helpers.contract_load(SSPELL_CONTRACT_ADDRESS, "Token: sSPELL")
 
-    print("\nCreating new file:")
+    print("\nCreating/opening file:")
     # creates a blank file, writes "0.0" to force a refresh in the main loop
     with open(FILENAME, "w") as file:
         file.write(str(0.0) + "\n")
@@ -56,19 +58,6 @@ def main():
                 file.write(str(abra_rate) + "\n")
 
         time.sleep(60)
-
-
-def contract_load(address, alias):
-    # Attempts to load the saved contract.
-    # If not found, fetch from network explorer and save.
-    try:
-       contract = Contract(alias)
-    except ValueError:
-        contract = Contract.from_explorer(address)
-        contract.set_alias(alias)
-    finally:
-        print(f"• {alias}")
-        return contract
 
 
 # Only executes main loop if this file is called directly
