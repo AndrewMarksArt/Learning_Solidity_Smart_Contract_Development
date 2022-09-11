@@ -2,5 +2,8 @@
 .brownie_env
 .env
 
+.abra_rate
+
 utils.py
 __pycache__
+node_modules
