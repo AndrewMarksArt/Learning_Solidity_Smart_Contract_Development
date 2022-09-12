@@ -1,6 +1,5 @@
 from time import time
 from brownie import *
-# from traderjoe_sspell_spell import DRY_RUN, ONE_SHOT, LOOP_TIME, SLIPPAGE
 import utils
 
 # HELPER FUNCTIONS
@@ -58,7 +57,7 @@ def get_token_decimals(token):
         raise
 
 def token_approve(token, router, value="unlimited"):
-    if DRY_RUN:
+    if utils.DRY_RUN:
         return True
     
     if value == "unlimited":
@@ -101,12 +100,12 @@ def token_swap(
     token_out_address,
     router
 ):
-    if DRY_RUN:
+    if utils.DRY_RUN:
         return True
     try:
         router.swapExactTokensForTokens(
             token_in_quantity,
-            int(token_out_quantity * (1 - SLIPPAGE)),
+            int(token_out_quantity * (1 - utils.SLIPPAGE)),
             [token_in_address, token_out_address],
             user.address,
             int(1000 * (time.time()) + 30 * utils.SECOND),

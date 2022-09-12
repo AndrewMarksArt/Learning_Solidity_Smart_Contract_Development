@@ -1,3 +1,4 @@
+from ctypes import util
 import sys
 import time
 import datetime
@@ -12,11 +13,11 @@ os.environ["SNOWTRACE_TOKEN"] = utils.SNOWTRACE_API_KEY
 
 # bot options that can be toggled
 # simulate swaps and approvals
-DRY_RUN = False
+DRY_RUN = utils.DRY_RUN
 # quit after first successful trade
-ONE_SHOT = False
+ONE_SHOT = utils.ONE_SHOT
 # how often to run the main loop (in seconds)
-LOOP_TIME = 1.0
+LOOP_TIME = utils.LOOP_TIME
 
 # Swap thresholds
 # SPELL --> sSPELL swap targets
